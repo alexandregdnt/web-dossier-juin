@@ -49,7 +49,7 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
                                     }
                                     // Append the host(domain name, ip) to the URL.
                                     $url.= $_SERVER['HTTP_HOST'];
-                                    $url.= "/dossier-fin-annee";
+                                    $url.= "/web-dossier-final";
                                     $url.= "/assets/img/";
                                     $url.= $selectedOption;
 

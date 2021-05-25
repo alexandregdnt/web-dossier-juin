@@ -75,7 +75,7 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                                 }
                                 // Append the host(domain name, ip) to the URL.
                                 $url.= $_SERVER['HTTP_HOST'];
-                                $url.= "/dossier-fin-annee";
+                                $url.= "/web-dossier-final";
                                 $url.= "/assets/img/";
                                 $url.= $value;
 
