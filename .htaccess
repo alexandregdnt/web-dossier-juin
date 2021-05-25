@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine On
+
+#pls un-comment in prod !!!
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^creer_enonce$  ?page=creer_enonce [L]
+RewriteRule ^generer_enonce$  ?page=generer_enonce [L]
+
+Redirect /author https://alexgr.be
