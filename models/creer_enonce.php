@@ -1,7 +1,7 @@
 <?php
 function getEnonceByContent ($content) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         SELECT * FROM enonce 
         WHERE contenu LIKE '". $content ."';
         ");
@@ -9,7 +9,7 @@ function getEnonceByContent ($content) {
 
 function createEnonce ($content) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         INSERT INTO enonce (contenu) 
         VALUES ('" . $content . "');
         ");
@@ -17,7 +17,7 @@ function createEnonce ($content) {
 
 function getChamp ($name) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         SELECT * FROM champ 
         WHERE nom LIKE '". $name ."';
         ");
@@ -25,7 +25,7 @@ function getChamp ($name) {
 
 function createChamp ($name, $type, $options) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         INSERT INTO champ (nom, typechamp, parametres) 
         VALUES ('". $name ."', '". $type ."', '". $options ."');
         ");
@@ -54,9 +54,4 @@ function imgUrlExist ($url) {
         }
     }
     return false;
-}
-
-function sessionDestroy () {
-    session_unset();
-    session_abort();
 }

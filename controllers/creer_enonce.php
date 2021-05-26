@@ -102,7 +102,7 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                             $res = createChamp($nomChamp, $typeChamp, $paramsChamp);
                             if ($res) {
                                 $_POST['success'] = "Votre champ a bien été ajouté dans la base de données !";
-                                sessionDestroy();
+                                session_destroy();
                             } else {
                                 $_POST['error'] = "Erreur lors de l'exécution de la requête !";
                             }
@@ -112,19 +112,19 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                     }
                 } else {
                     $_POST['error'] = "Un champ utilise déjà ce nom !";
-                    sessionDestroy();
+                    session_destroy();
                 }
             } else {
                 $_POST['error'] = "Erreur lors de l'exécution de la requête !";
-                sessionDestroy();
+                session_destroy();
             }
         } else {
             $_POST['error'] = "Type de champs invalide !";
-            sessionDestroy();
+            session_destroy();
         }
     } else {
         $_POST['error'] = "Nom de champ trop grand ! (max: 50 caractères)";
-        sessionDestroy();
+        session_destroy();
     }
 }
 

@@ -2,12 +2,12 @@
 
 function getEnonces () {
     $db = dbConnect();
-    return $db->query("SELECT * FROM enonce;");
+    return mysqli_query($db, "SELECT * FROM enonce;");
 }
 
 function getEnonceById ($id) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         SELECT contenu FROM enonce 
         WHERE idEnonce LIKE ". $id .";
         ");
@@ -15,7 +15,7 @@ function getEnonceById ($id) {
 
 function getChamp ($name) {
     $db = dbConnect();
-    return $db->query("
+    return mysqli_query($db, "
         SELECT * FROM champ 
         WHERE nom LIKE '". $name ."';
         ");

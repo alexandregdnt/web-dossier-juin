@@ -11,7 +11,7 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
             $res = getEnonceById($randomNumber);
             if ($res) {
                 if ($res->{"num_rows"} > 0) {
-                    $row = $res->fetch_assoc();
+                    $row = mysqli_fetch_assoc($res);
 
                     $content = $row["contenu"];
                     $content = str_replace("<script>", htmlspecialchars("<script>"), $content);
@@ -24,7 +24,7 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
 
                         if ($res) {
                             if ($res->{"num_rows"} > 0) {
-                                $row = $res->fetch_assoc();
+                                $row = mysqli_fetch_assoc($res);
                                 $options = unserialize($row["parametres"]);
 
                                 if ($row["typechamp"] === "number") {
