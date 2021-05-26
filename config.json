@@ -1,0 +1,9 @@
+{
+  "database": {
+    "hostname": "localhost",
+    "port": 8889,
+    "database": "dossier_web",
+    "user": "root",
+    "password": "root"
+  }
+}

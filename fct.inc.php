@@ -1,4 +1,13 @@
 <?php
+$config = file_get_contents(__DIR__ . "/config.json");
+$config = json_decode($config, true);
+
+$hostname = $config['database']['hostname'];
+$port = $config['database']['port'];
+$database = $config['database']['database'];
+$user = $config['database']['user'];
+$password = $config['database']['password'];
+
 function partial ($name) {
     require_once(__DIR__ . "/html_partials/$name.php");
 }
@@ -17,15 +26,10 @@ function redirect($page) {
 }
 
 function dbConnect() {
-    $hostname = "localhost";
-    $database = "dossier_web";
-    $user = "root";
-    $password = "root";
-    $port = 8889;
-
-    $mysqli = new mysqli($hostname, $user, $password, $database, $port);
-    if ($mysqli->connect_errno) {
-        die("Erreur : Échec lors de la connexion à MySQL : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "\n" . $mysqli->host_info . "\n");
+    global $hostname, $database, $user, $password, $port;
+    $mysqli = mysqli_connect($hostname, $user, $password, $database, $port);
+    if (mysqli_connect_errno()) {
+        die("Échec lors de la connexion à MySQL : " . mysqli_connect_error());
     }
     return $mysqli;
 }
