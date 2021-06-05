@@ -49,3 +49,39 @@ function imgUrlExist ($url) {
     }
     return false;
 }
+
+function getGeneratedFileId () {
+    $directory = "./generated";
+    // Récupère le nom de tous les fichiers du dossier mentionné (Dans un système unix (linux/macos), .. et . apparaissent et ne correspondent à aucun fichier)
+    $scanned_directory = array_diff(scandir($directory), array('..', '.'));
+
+    $min = 1;
+    $max = 9999999999;
+
+    $i = 0;
+    do {
+        $id = (string)rand($min, $max);
+        $valid = 1;
+
+        // Si l'intervalle d'id est déjà entièrement occupé alors retourne une erreur;
+        // +1 pour compter le min dans l'intervalle
+        if ($i >= ($max-$min +1)) return -1;
+
+        foreach ($scanned_directory as $value) {
+            $existedFileId = str_replace(".html", "", $value);
+            // Vérifie si l'id existe déjà (dans ce cas, regénère un nouvel id)
+            if ($id == $existedFileId) $valid = 0;
+        }
+
+        $i++;
+    } while ($valid == 0);
+
+    // Faire en sorte que l'id fasse le nombre de caractères que le max
+    if (strlen($id) < strlen((string)$max)) {
+        do {
+            $id = "0". $id;
+        } while (strlen($id) < strlen((string)$max));
+    }
+
+    return $id;
+}

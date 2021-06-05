@@ -112,10 +112,18 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
 </div>
 </body>
 </html>
-';
+    ';
 
-    file_put_contents("generated/index.html", $htmlCode);
-    // redirect("generated/");
+    $generatedFileId = getGeneratedFileId();
+    $_POST['generatedFileId'] = $generatedFileId;
+    if ($generatedFileId == -1) {
+        $_POST['error'] = "Le nombre d'intevalle d'id possible est trop petit !";
+    }
+
+    if (!isset($_POST['error']) || empty($_POST['error'])) {
+        file_put_contents("generated/$generatedFileId.html", $htmlCode);
+        // redirect("generated/");
+    }
 }
 
 view("generer_enonce");

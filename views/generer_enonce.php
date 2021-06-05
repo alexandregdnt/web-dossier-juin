@@ -22,11 +22,14 @@
 
                     <h4 class="text-center mb-4">Enoncé</h4>
 
-                    <?php if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce']) && (!isset($_POST['error']) || empty($_POST['error']))) { ?>
+                    <?php if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['generatedFileId']) && !empty($_POST['generatedFileId']))) { ?>
                         <div class="container">
+                            <div class="row mb-1">
+                                <p>Identifiant de l'énoncé généré: <span class="font-weight-bold"><?= $_POST['generatedFileId'] ?></span></p>
+                            </div>
                             <div class="row mb-4">
-                                <a class="col-4 mx-auto btn btn-success" href="./generated/index.html" download="Enoncé généré.html">Télécharger ici</a>
-                                <a class="col-4 mx-auto btn btn-secondary" href="./generated/" target="_blank">Visualiser ici</a>
+                                <a class="col-4 mx-auto btn btn-success" href="./generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
+                                <a class="col-4 mx-auto btn btn-secondary" href="./generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
                             </div>
                         </div>
                     <?php } ?>
