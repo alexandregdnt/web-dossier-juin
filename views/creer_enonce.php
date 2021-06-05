@@ -62,6 +62,7 @@
 
                         <?php
                         if ((isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) &&
+                            (isset($_SESSION['nomChamp']) && !empty($_SESSION['nomChamp'])) &&
                             (isset($_SESSION['typeChamp']) && !empty($_SESSION['typeChamp']))) {
                             if ($_SESSION['typeChamp'] === "number") { ?>
                                 <div class="row mb-3">

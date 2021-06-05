@@ -43,88 +43,89 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
     $nomChamp = str_replace(" ", "_", $nomChamp);
 
     if (strlen($nomChamp) <= 50) {
-        if ($typeChamp === "number" || $typeChamp === "text" || $typeChamp === "image") {
-            $res = getChamp($nomChamp);
-            if ($res) {
-                if ($res->{"num_rows"} == 0) {
-                    if ($typeChamp === "number") {
-                        if (isset($_POST['nombreBorneInferieure']) && !empty($_POST['nombreBorneInferieure']) && isset($_POST['nombreBorneSupperieure']) && !empty($_POST['nombreBorneSupperieure']) && isset($_POST['nombrePas']) && !empty($_POST['nombrePas'])) {
-                            $nombreBorneInferieure = $_POST['nombreBorneInferieure'];
-                            $nombreBorneSupperieure = $_POST['nombreBorneSupperieure'];
-                            $nombrePas = $_POST['nombrePas'];
+        $res = getChamp($nomChamp);
+        if ($res) {
+        if ($res->{"num_rows"} == 0) {
+                if ($typeChamp === "number" || $typeChamp === "text" || $typeChamp === "image") {
+                if ($typeChamp === "number") {
+                    if (isset($_POST['nombreBorneInferieure']) && !empty($_POST['nombreBorneInferieure']) && isset($_POST['nombreBorneSupperieure']) && !empty($_POST['nombreBorneSupperieure']) && isset($_POST['nombrePas']) && !empty($_POST['nombrePas'])) {
+                        $nombreBorneInferieure = $_POST['nombreBorneInferieure'];
+                        $nombreBorneSupperieure = $_POST['nombreBorneSupperieure'];
+                        $nombrePas = $_POST['nombrePas'];
 
-                            if ($nombreBorneInferieure < $nombreBorneSupperieure) {
-                                $array = [$nombreBorneInferieure, $nombreBorneSupperieure, $nombrePas];
-                                $paramsChamp = serialize($array);
+                        if ($nombreBorneInferieure < $nombreBorneSupperieure) {
+                            $array = [$nombreBorneInferieure, $nombreBorneSupperieure, $nombrePas];
+                            $paramsChamp = serialize($array);
+                        } else {
+                            $_POST['error'] = "Borne suppérieur inférieure à la borne inférieure !";
+                        }
+                    }
+                } elseif ($typeChamp === "image") {
+                    if (isset($_POST['paramsChamp']) && !empty($_POST['paramsChamp'])) {
+                        $paramsChamp = $_POST['paramsChamp'];
+                        $paramsChamp = str_replace("'", "\'", $paramsChamp);
+                        $array = explode("; ", $paramsChamp);
+
+                        $validation = true;
+                        foreach ($array as $key => $value) {
+                            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+                                $url = "https://";
                             } else {
-                                $_POST['error'] = "Borne suppérieur inférieure à la borne inférieure !";
+                                $url = "http://";
+                            }
+                            // Append the host(domain name, ip) to the URL.
+                            $url.= $_SERVER['HTTP_HOST'];
+                            $url.= "/web-dossier-final";
+                            $url.= "/assets/img/";
+                            $url.= $value;
+
+                            if (!imgUrlExist($url)) {
+                                $_POST['error'] = $value ." n'est pas une image valide ! (dossier image valide ./assets/img/)";
+                                $validation = false;
                             }
                         }
-                    } elseif ($typeChamp === "image") {
-                        if (isset($_POST['paramsChamp']) && !empty($_POST['paramsChamp'])) {
-                            $paramsChamp = $_POST['paramsChamp'];
-                            $paramsChamp = str_replace("'", "\'", $paramsChamp);
-                            $array = explode("; ", $paramsChamp);
-
-                            $validation = true;
-                            foreach ($array as $key => $value) {
-                                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-                                    $url = "https://";
-                                } else {
-                                    $url = "http://";
-                                }
-                                // Append the host(domain name, ip) to the URL.
-                                $url.= $_SERVER['HTTP_HOST'];
-                                $url.= "/web-dossier-final";
-                                $url.= "/assets/img/";
-                                $url.= $value;
-
-                                if (!imgUrlExist($url)) {
-                                    $_POST['error'] = $value ." n'est pas une image valide ! (dossier image valide ./assets/img/)";
-                                    $validation = false;
-                                }
-                            }
-                            if ($validation) {
-                                $paramsChamp = serialize($array);
-                            }
-                        }
-                    } else {
-                        if (isset($_POST['paramsChamp']) && !empty($_POST['paramsChamp'])) {
-                            $paramsChamp = $_POST['paramsChamp'];
-                            $paramsChamp = str_replace("'", "\'", $paramsChamp);
-                            $array = explode("; ", $paramsChamp);
+                        if ($validation) {
                             $paramsChamp = serialize($array);
                         }
                     }
-
-                    if (isset($paramsChamp) && !empty($paramsChamp)) {
-                        if (strlen($paramsChamp) <= 1000) {
-                            $res = createChamp($nomChamp, $typeChamp, $paramsChamp);
-                            if ($res) {
-                                $_POST['success'] = "Votre champ a bien été ajouté dans la base de données !";
-                                session_destroy();
-                            } else {
-                                $_POST['error'] = "Erreur lors de l'exécution de la requête !";
-                            }
-                        } else {
-                            $_POST['error'] = "Paramètres de champ trop grand ! (max: 1000 caractères après sérialisation)";
-                        }
-                    }
                 } else {
-                    $_POST['error'] = "Un champ utilise déjà ce nom !";
-                    session_destroy();
+                    if (isset($_POST['paramsChamp']) && !empty($_POST['paramsChamp'])) {
+                        $paramsChamp = $_POST['paramsChamp'];
+                        $paramsChamp = str_replace("'", "\'", $paramsChamp);
+                        $array = explode("; ", $paramsChamp);
+                        $paramsChamp = serialize($array);
+                    }
+                }
+                } else {
+                    $_POST['error'] = "Type de champs invalide !";
+                    session_unset();
+                }
+
+                if (isset($paramsChamp) && !empty($paramsChamp)) {
+                    if (strlen($paramsChamp) <= 1000) {
+                        $res = createChamp($nomChamp, $typeChamp, $paramsChamp);
+                        if ($res) {
+                            $_POST['success'] = "Votre champ a bien été ajouté dans la base de données !";
+                            session_unset();
+                        } else {
+                            $_POST['error'] = "Erreur lors de l'exécution de la requête !";
+                        }
+                    } else {
+                        $_POST['error'] = "Paramètres de champ trop grand ! (max: 1000 caractères après sérialisation)";
+                    }
                 }
             } else {
-                $_POST['error'] = "Erreur lors de l'exécution de la requête !";
-                session_destroy();
+                $_POST['error'] = "Un champ utilise déjà ce nom !";
+                session_unset();
             }
         } else {
-            $_POST['error'] = "Type de champs invalide !";
-            session_destroy();
+            $_POST['error'] = "Erreur lors de l'exécution de la requête !";
+            session_unset();
         }
+
     } else {
         $_POST['error'] = "Nom de champ trop grand ! (max: 50 caractères)";
-        session_destroy();
+        session_unset();
     }
 }
 
