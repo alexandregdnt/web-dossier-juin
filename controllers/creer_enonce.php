@@ -10,7 +10,7 @@ if (isset($_POST['submitEnonce']) && !empty($_POST['submitEnonce'])) {
 
     $res = getEnonceByContent($contenuEnonce);
     if ($res) {
-        if ($res->{"num_rows"} == 0) {
+        if (mysqli_num_rows($res) == 0) {
             if (strlen($contenuEnonce) <= 10000) {
                 $res = createEnonce($contenuEnonce);
                 if ($res) {
@@ -45,7 +45,7 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
     if (strlen($nomChamp) <= 50) {
         $res = getChamp($nomChamp);
         if ($res) {
-        if ($res->{"num_rows"} == 0) {
+        if (mysqli_num_rows($res) == 0) {
                 if ($typeChamp === "number" || $typeChamp === "text" || $typeChamp === "image") {
                 if ($typeChamp === "number") {
                     if (isset($_POST['nombreBorneInferieure']) && !empty($_POST['nombreBorneInferieure']) && isset($_POST['nombreBorneSupperieure']) && !empty($_POST['nombreBorneSupperieure']) && isset($_POST['nombrePas']) && !empty($_POST['nombrePas'])) {

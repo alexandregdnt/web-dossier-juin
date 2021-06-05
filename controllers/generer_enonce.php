@@ -4,13 +4,13 @@ model("generer_enonce");
 if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
     $res = getEnonces();
     if ($res) {
-        $numRows = $res->{"num_rows"};
+        $numRows = mysqli_num_rows($res);
         if ($numRows > 0) {
             $randomNumber = rand(1, $numRows);
 
             $res = getEnonceById($randomNumber);
             if ($res) {
-                if ($res->{"num_rows"} > 0) {
+                if (mysqli_num_rows($res) > 0) {
                     $row = mysqli_fetch_assoc($res);
 
                     $content = $row["contenu"];
@@ -23,7 +23,7 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
                         $res = getChamp($value[1]);
 
                         if ($res) {
-                            if ($res->{"num_rows"} > 0) {
+                            if (mysqli_num_rows($res) > 0) {
                                 $row = mysqli_fetch_assoc($res);
                                 $options = unserialize($row["parametres"]);
 
