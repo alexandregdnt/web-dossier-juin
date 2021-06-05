@@ -1,6 +1,19 @@
 Options -Indexes
 RewriteEngine On
 
+ErrorDocument 400 /error.php?id=400
+ErrorDocument 401 /error.php?id=401
+ErrorDocument 402 /error.php?id=402
+ErrorDocument 403 /error.php?id=403
+ErrorDocument 404 /error.php?id=404
+ErrorDocument 405 /error.php?id=405
+ErrorDocument 500 /error.php?id=500
+ErrorDocument 501 /error.php?id=501
+ErrorDocument 502 /error.php?id=502
+ErrorDocument 503 /error.php?id=503
+ErrorDocument 504 /error.php?id=504
+ErrorDocument 505 /error.php?id=505
+
 #pls un-comment in prod !!!
 #RewriteCond %{HTTPS} off
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -10,5 +23,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^creer_enonce$  ?page=creer_enonce [L]
 RewriteRule ^generer_enonce$  ?page=generer_enonce [L]
+RewriteRule ^generation_enonce_([0-9]*)$  ?page=generer_enonce&id=$1 [L]
 
 Redirect /author https://alexgr.be
