@@ -1,14 +1,10 @@
 <?php
 model("generer_enonce");
 
-if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
-    $res = getEnonces();
-    if ($res) {
-        $numRows = mysqli_num_rows($res);
-        if ($numRows > 0) {
-            $randomNumber = rand(1, $numRows);
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $enonceId = htmlspecialchars($_GET['id']);
 
-            $res = getEnonceById($randomNumber);
+            $res = getEnonceById($enonceId);
             if ($res) {
                 if (mysqli_num_rows($res) > 0) {
                     $row = mysqli_fetch_assoc($res);
@@ -72,17 +68,11 @@ if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce'])) {
                         }
                     }
                 } else {
-                    $_POST['error'] = "Echec d'accès à un énoncé !";
+                    $_POST['error'] = "Cet énoncé n'existe pas !";
                 }
             } else {
                 $_POST['error'] = "Erreur lors de l'exécution de la requête !";
             }
-        } else {
-            $_POST['error'] = "Aucun énoncé disponible dans la base de données !";
-        }
-    } else {
-        $_POST['error'] = "Erreur lors de l'exécution de la requête !";
-    }
 
     if (!isset($content) || empty($content)) {
         $content = "";

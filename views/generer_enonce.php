@@ -9,7 +9,7 @@
     <section class="bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
+                <div class="col-12 col-lg-8 mx-auto">
                     <?php
                     if (isset($_POST['error']) && !empty($_POST['error'])) {
                         printError($_POST['error']);
@@ -20,24 +20,46 @@
                     }
                     ?>
 
-                    <h4 class="text-center mb-4">Enoncé</h4>
-
-                    <?php if (isset($_POST['genererEnonce']) && !empty($_POST['genererEnonce']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['generatedFileId']) && !empty($_POST['generatedFileId']))) { ?>
-                        <div class="container">
+                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['generatedFileId']) && !empty($_POST['generatedFileId']))) { ?>
+                        <h3 class="text-center mb-4">Enoncé généré</h3>
+                        <div class="container mb-5">
                             <div class="row mb-1">
                                 <p>Identifiant de l'énoncé généré: <span class="font-weight-bold"><?= $_POST['generatedFileId'] ?></span></p>
                             </div>
-                            <div class="row mb-4">
+                            <div class="row">
                                 <a class="col-4 mx-auto btn btn-success" href="./generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
                                 <a class="col-4 mx-auto btn btn-secondary" href="./generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
                             </div>
                         </div>
                     <?php } ?>
 
-                    <form action="#" method="POST">
-                        <label class="mb-3" for="genererEnonce">En cliquant sur ce bouton, vous aller générer un énoncé aléatoire.</label><br>
-                        <input class="btn btn-primary" type="submit" id="genererEnonce" name="genererEnonce" value="Générer">
-                    </form>
+                    <div class="container">
+                        <h3 class="text-center mb-4">Liste des énoncés disponible</h3>
+                        <div class="row">
+                            <?php
+                            $res = getEnonces();
+                            if ($res) {
+                                $numRows = mysqli_num_rows($res);
+                                if ($numRows > 0) {
+                                    for ($i=0; $i<$numRows; $i++) {
+                                        $row = mysqli_fetch_assoc($res);
+
+                                        ?>
+                                        <div class="col-12 mb-3 p-3 enonce">
+                                            <p><?= $row["contenu"] ?></p>
+                                            <a class="btn btn-primary" href="./generation_enonce_<?= $row["idEnonce"] ?>">Choisir celui-ci !</a>
+                                        </div>
+                                        <?php
+                                    }
+                                } else {
+                                    echo '<div class="col-12 mx-auto">';
+                                    printError("Aucun énoncés disponible dans la base de données !");
+                                    echo '</div>';
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
