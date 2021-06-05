@@ -14,6 +14,9 @@
                     <a class="nav-link" href="./creer_enonce">Créer un énoncé</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="./creer_enonce#createChamp">Créer un champ</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="./generer_enonce">Générer un énoncé</a>
                 </li>
             </ul>
