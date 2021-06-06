@@ -14,6 +14,9 @@ switch ((isset($_GET['page'])) ? $_GET['page'] : "") {
     case "liste_enonces":
         controller("liste_enonces");
         break;
+    case "liste_champs":
+        controller("liste_champs");
+        break;
     default:
         controller("index");
         break;

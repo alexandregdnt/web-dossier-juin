@@ -25,5 +25,7 @@ RewriteRule ^creer_enonce$  ?page=creer_enonce [L]
 RewriteRule ^creer_champ$  ?page=creer_champ [L]
 RewriteRule ^liste_enonces$  ?page=liste_enonces [L]
 RewriteRule ^liste_enonces/([0-9]*)/([a-z]*)$  ?page=liste_enonces&id=$1&action=$2 [L]
+RewriteRule ^liste_champs$  ?page=liste_champs [L]
+RewriteRule ^liste_champs/([a-zA-Z0-9]*)/([a-z]*)$  ?page=liste_champs&name=$1&action=$2 [L]
 
 Redirect /author https://alexgr.be
