@@ -46,7 +46,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                     // Append the host(domain name, ip) to the URL.
                                     $url.= $_SERVER['HTTP_HOST'];
                                     $url.= "/". getBaseDirectory();
-                                    $url.= "/assets/img/";
+                                    $url.= "/assets/uploads/img/";
                                     $url.= $selectedOption;
 
                                     if (imgUrlExist($url)) {

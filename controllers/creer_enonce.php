@@ -77,7 +77,7 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                             // Append the host(domain name, ip) to the URL.
                             $url.= $_SERVER['HTTP_HOST'];
                             $url.= "/". getBaseDirectory();
-                            $url.= "/assets/img/";
+                            $url.= "/assets/uploads/img/";
                             $url.= $value;
 
                             if (!imgUrlExist($url)) {
