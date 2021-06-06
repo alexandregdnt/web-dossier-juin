@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <form action="#createEnonce" method="POST">
-                        <h4 class="text-center mb-4">Enoncé</h4>
+                        <h4 class="text-center mb-4">Etape 1. Enoncé</h4>
                         <?php
                         if (isset($_POST['submitEnonce']) && !empty($_POST['submitEnonce'])) {
                             if (isset($_POST['error']) && !empty($_POST['error'])) {
@@ -42,12 +42,12 @@
         </div>
     </section>
 
-    <section id="createChamp">
+    <section id="createChamp" class="mb-4">
         <div class="container">
-            <div class="row">
+            <div class="row mb-4">
                 <div class="col-lg-8 mx-auto">
                     <form action="#createChamp" method="POST">
-                        <h4 class="text-center mb-4">Champs</h4>
+                        <h4 class="text-center mb-4">Etape 2. Champs</h4>
                         <?php
                         if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                             if (isset($_POST['error']) && !empty($_POST['error'])) {
@@ -102,6 +102,11 @@
 
                         <input class="btn btn-primary" type="submit" name="submitChamp" value="Envoyer">
                     </form>
+                </div>
+            </div>
+            <div class="row float-right mt-3 mb-5">
+                <div class="col-12 text-center">
+                    <a href="./generer_enonce" class="btn btn-primary">Suivant -> Générer un énoncé</a>
                 </div>
             </div>
         </div>
