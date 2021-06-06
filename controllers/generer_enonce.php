@@ -45,14 +45,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                                     }
                                     // Append the host(domain name, ip) to the URL.
                                     $url.= $_SERVER['HTTP_HOST'];
-                                    $url.= "/web-dossier-final";
+                                    $url.= "/". getBaseDirectory();
                                     $url.= "/assets/img/";
                                     $url.= $selectedOption;
 
                                     if (imgUrlExist($url)) {
                                         $selectedOption = "<img alt='Image aléatoire' src='". $url ."'>";
                                     } else {
-                                        $selectedOption = "[img]Image indisponible[/img]";
+                                        $selectedOption = "[img]Image indisponible (". $selectedOption .")[/img]";
                                     }
                                 } else {
                                     $selectedOption = $value[0];

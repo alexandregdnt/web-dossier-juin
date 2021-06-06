@@ -34,6 +34,10 @@ function dbConnect() {
     return $mysqli;
 }
 
+function getBaseDirectory () {
+    return basename(__DIR__);
+}
+
 function printError($sMsg) {
     echo '<div class="alert alert-danger"><strong>Erreur : </strong>'.$sMsg.'</div>';
 }

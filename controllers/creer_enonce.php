@@ -65,6 +65,7 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                         $paramsChamp = $_POST['paramsChamp'];
                         $paramsChamp = str_replace("'", "\'", $paramsChamp);
                         $array = explode("; ", $paramsChamp);
+                        $imgNotExist = [];
 
                         $validation = true;
                         foreach ($array as $key => $value) {
@@ -75,17 +76,24 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                             }
                             // Append the host(domain name, ip) to the URL.
                             $url.= $_SERVER['HTTP_HOST'];
-                            $url.= "/web-dossier-final";
+                            $url.= "/". getBaseDirectory();
                             $url.= "/assets/img/";
                             $url.= $value;
 
                             if (!imgUrlExist($url)) {
-                                $_POST['error'] = $value ." n'est pas une image valide ! (dossier image valide ./assets/img/)";
+                                array_push($imgNotExist, $value);
                                 $validation = false;
                             }
                         }
-                        if ($validation) {
+                        if ($validation === true) {
                             $paramsChamp = serialize($array);
+                        } else {
+                            if (count($imgNotExist) > 1) {
+                                $_POST['error'] = implode(", ", $imgNotExist) ." ne sont pas des images valides ! (dossier images valides ./assets/img/)";
+                            } else {
+                                $_POST['error'] = $imgNotExist[0] ." n'est pas une image valide ! (dossier images valides ./assets/img/)";
+                            }
+                            unset($paramsChamp);
                         }
                     }
                 } else {
