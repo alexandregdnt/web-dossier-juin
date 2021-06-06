@@ -11,14 +11,14 @@
     <title>Dossier Web - Accueil</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/<?= getBaseDirectory() ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Trix core -->
-    <link rel="stylesheet" href="./assets/vendor/trix/style/trix.css">
-    <script src="./assets/vendor/trix/js/trix.js"></script>
+    <link rel="stylesheet" href="/<?= getBaseDirectory() ?>/assets/vendor/trix/style/trix.css">
+    <script src="/<?= getBaseDirectory() ?>/assets/vendor/trix/js/trix.js"></script>
 
     <!-- Custom styles -->
-    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="/<?= getBaseDirectory() ?>/assets/css/style.css" rel="stylesheet">
 
 </head>
 

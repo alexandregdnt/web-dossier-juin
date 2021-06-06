@@ -13,6 +13,25 @@ function getEnonceById ($id) {
         ");
 }
 
+function deleteEnonceById ($id) {
+    $db = dbConnect();
+    return mysqli_query($db, "DELETE FROM `enonce` WHERE `enonce`.`idEnonce` = $id");
+}
+
+function updateEnonceById ($id, $content) {
+    $db = dbConnect();
+    return mysqli_query($db, "
+        UPDATE enonce 
+        SET `contenu` = '" . $content . "'
+        WHERE `enonce`.`idEnonce` = $id;
+        ");
+}
+
+function getChamps () {
+    $db = dbConnect();
+    return mysqli_query($db, "SELECT * FROM champ");
+}
+
 function getChamp ($name) {
     $db = dbConnect();
     return mysqli_query($db, "

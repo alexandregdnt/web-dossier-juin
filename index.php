@@ -8,8 +8,11 @@ switch ((isset($_GET['page'])) ? $_GET['page'] : "") {
     case "creer_enonce":
         controller("creer_enonce");
         break;
-    case "generer_enonce":
-        controller("generer_enonce");
+    case "creer_champ":
+        controller("creer_champ");
+        break;
+    case "liste_enonces":
+        controller("liste_enonces");
         break;
     default:
         controller("index");
