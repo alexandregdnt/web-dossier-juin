@@ -47,7 +47,7 @@
                                         ?>
                                         <div class="col-12 mb-3 p-3 enonce">
                                             <p><?= $row["contenu"] ?></p>
-                                            <a class="btn btn-primary" href="./generation_enonce_<?= $row["idEnonce"] ?>">Choisir celui-ci !</a>
+                                            <a class="btn btn-primary" href="./generer_enonce_<?= $row["idEnonce"] ?>">Choisir celui-ci !</a>
                                         </div>
                                         <?php
                                     }

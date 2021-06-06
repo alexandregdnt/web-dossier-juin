@@ -23,6 +23,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^creer_enonce$  ?page=creer_enonce [L]
 RewriteRule ^generer_enonce$  ?page=generer_enonce [L]
-RewriteRule ^generation_enonce_([0-9]*)$  ?page=generer_enonce&id=$1 [L]
+RewriteRule ^generer_enonce_([0-9]*)$  ?page=generer_enonce&id=$1 [L]
 
 Redirect /author https://alexgr.be
