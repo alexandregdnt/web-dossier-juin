@@ -2,7 +2,7 @@
 
     <header class="bg-primary text-white">
         <div class="container text-center">
-            <h1>Génération d'énoncés</h1>
+            <h1>Liste des énoncés</h1>
         </div>
     </header>
 
@@ -31,6 +31,7 @@
                                 <a class="col-4 mx-auto btn btn-secondary" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
                             </div>
                         </div>
+                        <hr>
                     <?php } ?>
 
                     <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['enonceEditContent']) && !empty($_POST['enonceEditContent'])) && (isset($_POST['enonceEditId']) && !empty($_POST['enonceEditId']))) { ?>
@@ -50,10 +51,11 @@
                                 </div>
                             </div>
                         </form>
+                        <hr>
                     <?php } ?>
 
                     <div class="container">
-                        <h3 class="text-center mb-4">Liste des énoncés disponible</h3>
+                        <h3 class="text-center mb-4">Liste des énoncés existant</h3>
                         <div class="row">
                             <?php
                             $res = getEnonces();

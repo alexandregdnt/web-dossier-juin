@@ -6,7 +6,7 @@
         </div>
     </header>
 
-    <section id="createEnonce" class="bg-light">
+    <section id="createEnonce">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
