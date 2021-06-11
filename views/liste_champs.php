@@ -20,34 +20,65 @@
                     }
                     ?>
 
-                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['generatedFileId']) && !empty($_POST['generatedFileId']))) { ?>
-                        <h3 class="text-center mb-4">Enoncé généré</h3>
-                        <div class="container mb-5">
-                            <div class="row mb-1">
-                                <p>Identifiant de l'énoncé généré: <span class="font-weight-bold"><?= $_POST['generatedFileId'] ?></span></p>
-                            </div>
-                            <div class="row">
-                                <a class="col-4 mx-auto btn btn-success" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
-                                <a class="col-4 mx-auto btn btn-secondary" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
-                            </div>
-                        </div>
-                        <hr>
-                    <?php } ?>
-
-                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['enonceEditContent']) && !empty($_POST['enonceEditContent'])) && (isset($_POST['enonceEditId']) && !empty($_POST['enonceEditId']))) { ?>
-                        <form action="/<?= getBaseDirectory() ?>/liste_enonces" method="POST">
-                            <h3 class="text-center mb-4">Modification énoncé</h3>
+                    <?php
+                    if ((!isset($_POST['error']) || empty($_POST['error'])) && (isset($_GET['action']) && !empty($_GET['action'])) && $_GET['action'] == 'edit') {
+                        if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
+                            echo '<form action="/'. getBaseDirectory() .'/liste_champs" method="POST">';
+                        } else {
+                            echo '<form action="/'. getBaseDirectory() .'/liste_champs/'. $_POST['nomChamp'] .'/edit" method="POST">';
+                        }
+                        ?>
+                            <h3 class="text-center mb-4">Modification champ</h3>
                             <div class="container mb-5">
-                                <div class="row mx-auto mb-1">
-                                    <div class="col-12">
-                                        <input type="hidden" name="enonceEditId" value="<?= $_POST['enonceEditId'] ?>">
-                                        <input type="hidden" id="enonceEditContent" name="enonceEditContent" value="<?= htmlspecialchars($_POST['enonceEditContent']) ?>">
-                                        <trix-editor input="enonceEditContent" class="trix-content"></trix-editor>
+                                <?php
+                                if ((isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) &&
+                                    (isset($_SESSION['nomChamp']) && !empty($_SESSION['nomChamp'])) &&
+                                    (isset($_SESSION['typeChamp']) && !empty($_SESSION['typeChamp']))) {
+                                    if ($_SESSION['typeChamp'] === "number") { ?>
+                                        <div class="row mb-3">
+                                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                                <input class="form-control" type="number" name="nombreBorneInferieure" placeholder="Borne inférieure" value="<?= $_SESSION['nombreBorneInferieure'] ?>" required>
+                                            </div>
+                                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                                <input class="form-control" type="number" name="nombreBorneSupperieure" placeholder="Borne supérieure" value="<?= $_SESSION['nombreBorneSupperieure'] ?>" required>
+                                            </div>
+                                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                                <input class="form-control" type="number" name="nombrePas" placeholder="Pas" value="<?= $_SESSION['nombrePas'] ?>" min="0.00" step="0.01" required>
+                                            </div>
+                                        </div>
+                                    <?php } elseif ($_SESSION['typeChamp'] === "image") { ?>
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <p>Pour gérer (ajouter, supprimer) des images sur l'hébergement, rendez-vous sur <a href="/ <?= getBaseDirectory() ?>/liste_images">Liste images</a>.</p>
+                                                <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="<?= $_SESSION['paramsChamp'] ?>" required></textarea>
+                                            </div>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="<?= $_SESSION['paramsChamp'] ?>" required></textarea>
+                                            </div>
+                                        </div>
+                                    <?php }
+                                } else { ?>
+                                    <label for="nomChamp">Veuillez renseigner le nom du champ <span class="font-weight-bold">sans</span> les <code>##</code>.</label>
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                            <input class="form-control" type="text" id="nomChamp" name="nomChamp" placeholder="Nom du champ" value="<?= $_POST['nomChamp'] ?>" required>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <select class="form-control" id="typeChamp" name="typeChamp" required>
+                                                <option value="" disabled>---- Type de champ ----</option>
+                                                <option value="number" <?= $_POST['typeChamp'] == "number" ? 'selected' : '' ?>>Nombre</option>
+                                                <option value="text" <?= $_POST['typeChamp'] == "text" ? 'selected' : '' ?>>Texte</option>
+                                                <option value="image" <?= $_POST['typeChamp'] == "image" ? 'selected' : '' ?>>Image</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <div class="row">
-                                    <input class="col-4 mx-auto btn btn-primary" type="submit" name="enonceEditSubmit" value="Sauvegarder">
-                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces">Annuler</a>
+                                    <input class="col-4 mx-auto btn btn-primary" type="submit" name="submitChamp" value="Sauvegarder">
+                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_champs">Annuler</a>
                                 </div>
                             </div>
                         </form>
@@ -87,8 +118,8 @@
 
                                             <?= $paramsChamp ?>
 
-                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nomChamp"] ?>/delete">Supprimer</a>
-                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nomChamp"] ?>/edit">Modifier</a>
+                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nom"] ?>/delete">Supprimer</a>
+                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nom"] ?>/edit">Modifier</a>
                                         </div>
                                         <?php
                                     }

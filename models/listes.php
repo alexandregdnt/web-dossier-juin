@@ -1,5 +1,6 @@
 <?php
 
+// Enonces
 function getEnonces () {
     $db = dbConnect();
     return mysqli_query($db, "SELECT * FROM enonce;");
@@ -27,6 +28,8 @@ function updateEnonceById ($id, $content) {
         ");
 }
 
+
+// Champs
 function getChamps () {
     $db = dbConnect();
     return mysqli_query($db, "SELECT * FROM champ");
@@ -40,10 +43,24 @@ function getChamp ($name) {
         ");
 }
 
-function randFloat ($min, $max, $step) {
-    return (rand() % ((++$max - $min) / $step)) * $step + $min;
+function deleteChamp ($name) {
+    $db = dbConnect();
+    return mysqli_query($db, "DELETE FROM `champ` WHERE `champ`.`nom` LIKE '". $name. "'");
 }
 
+function updateChamp ($name, $newName, $type, $options) {
+    $db = dbConnect();
+    return mysqli_query($db, "
+        UPDATE champ 
+        SET `nom` = '" . $newName . "',
+        `typechamp` = '". $type ."',
+        `parametres` = '" . $options . "'
+        WHERE `champ`.`nom` LIKE '". $name. "';
+        ");
+}
+
+
+// Images
 function urlExist ($url) {
     // Récupération des en-têtes
     $hdrs = @get_headers($url);
@@ -69,6 +86,12 @@ function imgUrlExist ($url) {
     return false;
 }
 
+// Autre
+function randFloat ($min, $max, $step) {
+    return (rand() % ((++$max - $min) / $step)) * $step + $min;
+}
+
+// Génération énoné
 function getGeneratedFileId () {
     $directory = "./generated";
     // Récupère le nom de tous les fichiers du dossier mentionné (Dans un système unix (linux/macos), .. et . apparaissent et ne correspondent à aucun fichier)
