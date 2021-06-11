@@ -31,6 +31,9 @@
                         <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_images">Liste images hébergés</a>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/<?= getBaseDirectory() ?>/ajout_image">Ajout image</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -23,6 +23,9 @@ switch ((isset($_GET['page'])) ? $_GET['page'] : "") {
     case "liste_images":
         controller("liste_images");
         break;
+    case "ajout_image":
+        controller("ajout_image");
+        break;
     default:
         controller("index");
         break;
