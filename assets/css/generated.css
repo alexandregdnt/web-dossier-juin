@@ -25,8 +25,8 @@ body {
 }
 
 img {
-    width: 400px;
-    height: auto;
+    height: 300px;
+    width: auto;
     display: inline-block;
     border: 1px solid #737373;
     border-radius: 8px;

@@ -17,6 +17,12 @@ switch ((isset($_GET['page'])) ? $_GET['page'] : "") {
     case "liste_champs":
         controller("liste_champs");
         break;
+    case "liste_enonces_generes":
+        controller("liste_enonces_generes");
+        break;
+    case "liste_images":
+        controller("liste_images");
+        break;
     default:
         controller("index");
         break;

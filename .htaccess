@@ -26,6 +26,10 @@ RewriteRule ^creer_champ$  ?page=creer_champ [L]
 RewriteRule ^liste_enonces$  ?page=liste_enonces [L]
 RewriteRule ^liste_enonces/([0-9]*)/([a-z]*)$  ?page=liste_enonces&id=$1&action=$2 [L]
 RewriteRule ^liste_champs$  ?page=liste_champs [L]
-RewriteRule ^liste_champs/([a-zA-Z0-9]*)/([a-z]*)$  ?page=liste_champs&name=$1&action=$2 [L]
+RewriteRule ^liste_champs/(.*)/([a-z]*)$  ?page=liste_champs&name=$1&action=$2 [L]
+RewriteRule ^liste_enonces_generes$  ?page=liste_enonces_generes [L]
+RewriteRule ^liste_enonces_generes/([0-9]*)/([a-z]*)$  ?page=liste_enonces_generes&id=$1&action=$2 [L]
+RewriteRule ^liste_images$  ?page=liste_images [L]
+RewriteRule ^liste_images/(.*)/([a-z]*)$  ?page=liste_images&name=$1&action=$2 [L]
 
 Redirect /author https://alexgr.be

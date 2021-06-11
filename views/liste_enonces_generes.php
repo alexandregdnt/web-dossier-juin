@@ -2,7 +2,7 @@
 
     <header class="bg-primary text-white">
         <div class="container text-center">
-            <h1>Liste des énoncés</h1>
+            <h1>Liste des énoncés générés</h1>
         </div>
     </header>
 
@@ -67,12 +67,10 @@
 
                                         ?>
                                         <div class="col-12 mb-3 p-3 enonce">
-                                            <?= $row["contenu"] ?>
-                                            <div class="mt-3">
-                                                <a class="btn btn-primary" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
-                                                <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
-                                                <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>
-                                            </div>
+                                            <p><?= $row["contenu"] ?></p>
+                                            <a class="btn btn-primary" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
+                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
+                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>
                                         </div>
                                         <?php
                                     }

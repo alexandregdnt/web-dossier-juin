@@ -28,7 +28,7 @@
                         <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_champs">Liste champs</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_enonces_generes">Liste énoncés générés</a>
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_enonces_generes">Liste images hébergés</a>
+                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_images">Liste images hébergés</a>
                     </div>
                 </li>
             </ul>

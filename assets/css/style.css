@@ -11,3 +11,11 @@ section {
     border: 1px solid #737373;
     border-radius: 8px;
 }
+
+img.img-enonce {
+    height: 300px;
+    width: auto;
+    display: block;
+    border: 1px solid #737373;
+    border-radius: 8px;
+}
