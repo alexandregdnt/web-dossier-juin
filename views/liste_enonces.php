@@ -68,7 +68,7 @@
                                         ?>
                                         <div class="col-12 mb-3 p-3 enonce">
                                             <?= $row["contenu"] ?>
-                                            <div class="mt-3">
+                                            <div class="mt-">
                                                 <a class="btn btn-primary" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
                                                 <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
                                                 <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>

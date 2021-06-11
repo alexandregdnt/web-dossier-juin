@@ -20,34 +20,24 @@
                     }
                     ?>
 
-                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['generatedFileId']) && !empty($_POST['generatedFileId']))) { ?>
-                        <h3 class="text-center mb-4">Enoncé généré</h3>
-                        <div class="container mb-5">
-                            <div class="row mb-1">
-                                <p>Identifiant de l'énoncé généré: <span class="font-weight-bold"><?= $_POST['generatedFileId'] ?></span></p>
-                            </div>
-                            <div class="row">
-                                <a class="col-4 mx-auto btn btn-success" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
-                                <a class="col-4 mx-auto btn btn-secondary" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
-                            </div>
-                        </div>
-                        <hr>
-                    <?php } ?>
-
-                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['enonceEditContent']) && !empty($_POST['enonceEditContent'])) && (isset($_POST['enonceEditId']) && !empty($_POST['enonceEditId']))) { ?>
-                        <form action="/<?= getBaseDirectory() ?>/liste_enonces" method="POST">
-                            <h3 class="text-center mb-4">Modification énoncé</h3>
+                    <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_GET['action']) && !empty($_GET['action'])) && $_GET['action'] === "rename") { ?>
+                        <form action="/<?= getBaseDirectory() ?>/liste_enonces_generes" method="POST">
+                            <h3 class="text-center mb-4">Renommer un énoncé généré</h3>
                             <div class="container mb-5">
-                                <div class="row mx-auto mb-1">
-                                    <div class="col-12">
-                                        <input type="hidden" name="enonceEditId" value="<?= $_POST['enonceEditId'] ?>">
-                                        <input type="hidden" id="enonceEditContent" name="enonceEditContent" value="<?= htmlspecialchars($_POST['enonceEditContent']) ?>">
-                                        <trix-editor input="enonceEditContent" class="trix-content"></trix-editor>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                        <label for="oldNameDisplay">Ancien nom</label>
+                                        <input class="form-control" type="text" id="oldNameDisplay" name="oldNameDisplay" value="<?= $_GET['id'] ?>" required disabled>
+                                        <input class="form-control" type="hidden" id="oldName" name="oldName" value="<?= $_GET['id'] ?>" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="newName">Nouveau nom</label>
+                                        <input class="form-control" type="text" id="newName" name="newName" value="" placeholder="<?= $_GET['id'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <input class="col-4 mx-auto btn btn-primary" type="submit" name="enonceEditSubmit" value="Sauvegarder">
-                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces">Annuler</a>
+                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces_generes">Annuler</a>
                                 </div>
                             </div>
                         </form>
@@ -55,30 +45,32 @@
                     <?php } ?>
 
                     <div class="container">
-                        <h3 class="text-center mb-4">Liste des énoncés existant</h3>
+                        <h3 class="text-center mb-4">Liste des énoncés déjà générés</h3>
                         <div class="row">
                             <?php
-                            $res = getEnonces();
-                            if ($res) {
-                                $numRows = mysqli_num_rows($res);
-                                if ($numRows > 0) {
-                                    for ($i=0; $i<$numRows; $i++) {
-                                        $row = mysqli_fetch_assoc($res);
+                            $directory = "./generated/";
+                            $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
-                                        ?>
-                                        <div class="col-12 mb-3 p-3 enonce">
-                                            <p><?= $row["contenu"] ?></p>
-                                            <a class="btn btn-primary" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
-                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
-                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>
+                            // var_dump($scanned_directory);
+                            if (count($scanned_directory) > 0) {
+                                foreach ($scanned_directory as $key => $value) {
+                                    $value = preg_replace("/\.html/", "", $value, 1);
+                                    ?>
+                                    <div class="col-12 mb-3 p-3 enonce">
+                                        <h4><?= htmlspecialchars($value) ?></h4>
+                                        <div class="mt-3">
+                                            <a class="btn btn-success" href="/<?= getBaseDirectory() ?>/generated/<?= urlencode($value) ?>.html" download="Enoncé généré.html">Télécharger ici</a>
+                                            <a class="btn btn-secondary" href="/<?= getBaseDirectory() ?>/generated/<?= urlencode($value) ?>.html" target="_blank">Visualiser ici</a>
+                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces_generes/<?= urlencode($value) ?>/delete">Supprimer</a>
+                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces_generes/<?= urlencode($value) ?>/rename">Renommer</a>
                                         </div>
-                                        <?php
-                                    }
-                                } else {
-                                    echo '<div class="col-12 mx-auto">';
-                                    printError("Aucun énoncés disponible dans la base de données !");
-                                    echo '</div>';
+                                    </div>
+                                    <?php
                                 }
+                            } else {
+                                echo '<div class="col-12 mx-auto">';
+                                printError("Aucun énoncés disponible dans la base de données !");
+                                echo '</div>';
                             }
                             ?>
                         </div>

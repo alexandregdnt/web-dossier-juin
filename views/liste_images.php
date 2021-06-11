@@ -27,15 +27,20 @@
                             <div class="container mb-5">
                                 <div class="row mb-3">
                                     <div class="col-12">
-                                        <?php printWarning("Gardez la même extension que celle d'origine (.png, .jpg, .webp, .gif) !") ?>
+                                        <?php // printWarning("Gardez la même extension que celle d'origine (.png, .jpg, .webp, .gif) !") ?>
                                     </div>
                                     <div class="col-12 col-md-6 mb-3 mb-md-0">
-                                        <label for="oldName">Ancien nom</label>
-                                        <input class="form-control" type="text" id="oldName" name="oldName" value="<?= $_GET['name'] ?>" required disabled>
+                                        <label for="oldNameDisplay">Ancien nom</label>
+                                        <?php
+                                        $matches = preg_split("/\./", $_GET['name']);
+                                        ?>
+                                        <input class="form-control" type="text" id="oldNameDisplay" name="oldNameDisplay" value="<?= $matches[0] ?>" required disabled>
+                                        <input class="form-control" type="hidden" name="oldName" value="<?= $matches[0] ?>" required>
+                                        <input class="form-control" type="hidden" name="fileExtension" value="<?= $matches[count($matches)-1] ?>" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="newName">Nouveau nom</label>
-                                        <input class="form-control" type="text" id="newName" name="newName" value="" placeholder="<?= $_GET['name'] ?>" required>
+                                        <input class="form-control" type="text" id="newName" name="newName" value="" placeholder="<?= $matches[0] ?>" required>
                                     </div>
                                 </div>
                                 <div class="row">

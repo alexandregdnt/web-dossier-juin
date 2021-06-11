@@ -28,7 +28,7 @@ RewriteRule ^liste_enonces/([0-9]*)/([a-z]*)$  ?page=liste_enonces&id=$1&action=
 RewriteRule ^liste_champs$  ?page=liste_champs [L]
 RewriteRule ^liste_champs/(.*)/([a-z]*)$  ?page=liste_champs&name=$1&action=$2 [L]
 RewriteRule ^liste_enonces_generes$  ?page=liste_enonces_generes [L]
-RewriteRule ^liste_enonces_generes/([0-9]*)/([a-z]*)$  ?page=liste_enonces_generes&id=$1&action=$2 [L]
+RewriteRule ^liste_enonces_generes/(.*)/([a-z]*)$  ?page=liste_enonces_generes&id=$1&action=$2 [L]
 RewriteRule ^liste_images$  ?page=liste_images [L]
 RewriteRule ^liste_images/(.*)/([a-z]*)$  ?page=liste_images&name=$1&action=$2 [L]
 

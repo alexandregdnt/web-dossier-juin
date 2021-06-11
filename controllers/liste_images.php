@@ -38,12 +38,17 @@ if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "de
     }
 }
 
-if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newName']) && !empty($_POST['newName'])) {
+if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newName']) && !empty($_POST['newName']) && isset($_POST['fileExtension']) && !empty($_POST['fileExtension'])) {
     $directory = "./assets/uploads/img/";
 
-    if (file_exists($directory . $_POST['oldName'])) {
-        if (!file_exists($directory . $_POST['newName'])) {
-            if (rename($directory . $_POST['oldName'], $directory . $_POST['newName'])) {
+    $fileExtension = "." . $_POST['fileExtension'];
+    $oldName = $_POST['oldName'];
+    $newName = str_replace(" ", "_", $_POST['newName']);
+    $newName = str_replace(".", "_", $newName);
+
+    if (file_exists($directory . $oldName . $fileExtension)) {
+        if (!file_exists($directory . $newName . $fileExtension)) {
+            if (rename($directory . $oldName . $fileExtension, $directory . $newName . $fileExtension)) {
                 $_POST['success'] = "Le fichier a bien été renommé !";
             } else {
                 $_POST['error'] = "Erreur lors du renommage de fichier !";
@@ -52,7 +57,7 @@ if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newNa
             $_POST['error'] = "Un fichier avec ce nom existe déjà !";
         }
     } else {
-        $_POST['error'] = "Cette image n'existe pas !";
+        $_POST['error'] = "Ce fichier n'existe pas !";
     }
 }
 
