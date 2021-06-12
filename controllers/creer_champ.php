@@ -41,11 +41,10 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                         $imgNotExist = [];
 
                         $validation = true;
+                        $imgDirectory = "../public/assets/uploads/img/";
                         foreach ($array as $key => $value) {
-                            $url = "/assets/uploads/img/";
-                            $url.= $value;
-
-                            if (!imgUrlExist($url)) {
+                            $check = getimagesize($imgDirectory . basename($value));
+                            if ($check != true) {
                                 array_push($imgNotExist, $value);
                                 $validation = false;
                             }
@@ -54,9 +53,9 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                             $paramsChamp = serialize($array);
                         } else {
                             if (count($imgNotExist) > 1) {
-                                $_POST['error'] = implode(", ", $imgNotExist) ." ne sont pas des images valides ! (dossier images valides ./assets/img/)";
+                                $_POST['error'] = implode(", ", $imgNotExist) ." ne sont pas des images valides !";
                             } else {
-                                $_POST['error'] = $imgNotExist[0] ." n'est pas une image valide ! (dossier images valides ./assets/img/)";
+                                $_POST['error'] = $imgNotExist[0] ." n'est pas une image valide !";
                             }
                             unset($paramsChamp);
                         }

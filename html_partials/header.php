@@ -10,6 +10,9 @@
 
     <title>RandGen - Générateur énoncés en ligne</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+
     <!-- Bootstrap core CSS -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

@@ -39,10 +39,19 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                                         $selectedOptionId = rand(0, $availableOptions - 1);
                                         $selectedOption = $options[$selectedOptionId];
 
-                                        $url = "/assets/uploads/img/";
+                                        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+                                            $url = "https://";
+                                        } else {
+                                            $url = "http://";
+                                        }
+                                        // Append the host(domain name, ip) to the URL.
+                                        $url .= $_SERVER['HTTP_HOST'];
+                                        $url .= "/assets/uploads/img/";
                                         $url .= $selectedOption;
 
-                                        if (imgUrlExist($url)) {
+                                        $imgDirectory = "../public/assets/uploads/img/";
+                                        $check = getimagesize($imgDirectory . basename($selectedOption));
+                                        if ($check !== false) {
                                             $selectedOption = "<img alt='Image aléatoire' src='" . $url . "'>";
                                         } else {
                                             $selectedOption = "[img]Image indisponible (" . $selectedOption . ")[/img]";
@@ -65,7 +74,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                     $content = "";
                 }
 
-                $style = file_get_contents("./assets/css/generated.css");
+                $style = file_get_contents("../public/assets/css/generated.css");
                 $htmlCode = '
 <!DOCTYPE html>
 <html lang="fr">

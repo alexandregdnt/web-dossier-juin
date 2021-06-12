@@ -5,7 +5,7 @@ model("listes");
 if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "delete") {
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $imgName = urldecode($_GET['id']);
-        $directory = "./generated/";
+        $directory = "../public/generated/";
         $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
         // var_dump($scanned_directory);
@@ -36,7 +36,7 @@ if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "de
 }
 
 if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newName']) && !empty($_POST['newName'])) {
-    $directory = "./generated/";
+    $directory = "../public/generated/";
 
     $oldName = $_POST['oldName']. ".html";
 

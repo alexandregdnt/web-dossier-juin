@@ -59,33 +59,6 @@ function updateChamp ($name, $newName, $type, $options) {
         ");
 }
 
-
-// Images
-function urlExist ($url) {
-    // Récupération des en-têtes
-    $hdrs = @get_headers($url);
-
-    if (is_array($hdrs)) {
-        // Vérification code 200 OK
-        if (preg_match('/^HTTP\/\d+\.\d+\s+2\d\d\s+.*$/', $hdrs[0])) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function imgUrlExist ($url) {
-    $hdrs = @get_headers($url);
-
-    if (urlExist($url)) {
-        // hdrs[8] Correspond au type de contenu (html = "Content-Type: text/html; charset=UTF-8") ou (img en jpg = "Content-Type: image/jpeg")
-        if (preg_match("#image/#", $hdrs[8])) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // Autre
 function randFloat ($min, $max, $step) {
     return (rand() % ((++$max - $min) / $step)) * $step + $min;

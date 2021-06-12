@@ -43,7 +43,10 @@
                             <?php } elseif ($_SESSION['typeChamp'] === "image") { ?>
                                 <div class="row mb-3">
                                     <div class="col-12">
-                                        <p>Pour gérer (ajouter, supprimer) des images sur l'hébergement, rendez-vous sur <a href="./liste_images">Liste images</a>.</p>
+                                        <p>
+                                            Pour voir la liste des images disponible sur le site, rendez-vous sur <a href="/liste_images">Liste images</a>. <br>
+                                            Pour en ajouter, rendez-vous sur <a href="/ajout_image">Ajout image</a>.
+                                        </p>
                                         <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="" required></textarea>
                                     </div>
                                 </div>
@@ -81,7 +84,7 @@
     <div class="container">
         <div class="row float-right">
             <div class="col-12">
-                <a href="./liste_enonces" class="btn btn-primary">Suivant -> Générer un énoncé</a>
+                <a href="/liste_enonces" class="btn btn-primary">Suivant -> Générer un énoncé</a>
             </div>
         </div>
     </div>

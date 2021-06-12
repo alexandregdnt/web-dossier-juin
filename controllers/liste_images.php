@@ -5,7 +5,7 @@ if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "de
     if ($_GET['action'] === "delete" || $_GET['action'] === "rename") {
         if (isset($_GET['name']) && !empty($_GET['name'])) {
             $imgName = urldecode($_GET['name']);
-            $directory = "./assets/uploads/img/";
+            $directory = "../public/assets/uploads/img/";
             $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
             // var_dump($scanned_directory);
@@ -39,7 +39,7 @@ if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "de
 }
 
 if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newName']) && !empty($_POST['newName']) && isset($_POST['fileExtension']) && !empty($_POST['fileExtension'])) {
-    $directory = "./assets/uploads/img/";
+    $directory = "../public/assets/uploads/img/";
 
     $fileExtension = "." . $_POST['fileExtension'];
     $oldName = $_POST['oldName'];

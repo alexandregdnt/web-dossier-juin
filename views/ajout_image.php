@@ -17,7 +17,7 @@
                     <form action="/ajout_image" method="POST" enctype="multipart/form-data">
                         <h4 class="text-center mb-4">Ajouter une image à la bibliothèque</h4>
                         <?php
-                        if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
+                        if (isset($_POST['submitAddFile']) && !empty($_POST['submitAddFile'])) {
                             if (isset($_POST['error']) && !empty($_POST['error'])) {
                                 printError($_POST['error']);
                             } elseif (isset($_POST['success']) && !empty($_POST['success'])) {
@@ -30,7 +30,7 @@
 
                         <div class="row mb-3">
                             <div class="col-12 col-md-6 mb-3 mb-md-0">
-                                <input class="form-control" type="file" accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" name="fileToUpload" placeholder="Fichier à mettre en ligne" value="" required>
+                                <input class="form-control" type="file" accept="image/png, image/jpg, image/jpeg, image/gif" name="fileToUpload" placeholder="Fichier à mettre en ligne" value="" required>
                             </div>
                             <div class="col-12 col-md-6">
                                 <input class="form-control" type="text" name="fileName" placeholder="Nom du fichier" value="" required>

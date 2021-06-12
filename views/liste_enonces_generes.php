@@ -48,7 +48,7 @@
                         <h3 class="text-center mb-4">Liste des énoncés déjà générés</h3>
                         <div class="row">
                             <?php
-                            $directory = "./generated/";
+                            $directory = "../public/generated/";
                             $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
                             // var_dump($scanned_directory);

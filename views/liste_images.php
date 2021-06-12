@@ -56,7 +56,7 @@
                         <h3 class="text-center mb-4">Liste des images disponibles</h3>
                         <div class="row">
                             <?php
-                            $directory = "./assets/uploads/img/";
+                            $directory = "../public/assets/uploads/img/";
                             $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
                             // var_dump($scanned_directory);

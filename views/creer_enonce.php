@@ -45,7 +45,7 @@
     <div class="container">
         <div class="row float-right">
             <div class="col-12">
-                <a href="./creer_champ" class="btn btn-primary">Suivant -> Créer un champ</a>
+                <a href="/creer_champ" class="btn btn-primary">Suivant -> Créer un champ</a>
             </div>
         </div>
     </div>
