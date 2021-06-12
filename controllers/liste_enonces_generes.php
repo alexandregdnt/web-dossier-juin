@@ -4,7 +4,7 @@ model("listes");
 
 if (isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] === "delete") {
     if (isset($_GET['id']) && !empty($_GET['id'])) {
-        $imgName = urldecode($_GET['id']);
+        $imgName = urldecode($_GET['id']) . ".html";
         $directory = "../public/generated/";
         $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
