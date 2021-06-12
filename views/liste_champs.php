@@ -50,8 +50,8 @@
                                         <div class="row mb-3">
                                             <div class="col-12">
                                                 <p>
-                                                    Pour voir la liste des images disponible sur le site, rendez-vous sur <a href="/liste_images">Liste images</a>. <br>
-                                                    Pour en ajouter, rendez-vous sur <a href="/ajout_image">Ajout image</a>.
+                                                    Pour voir la liste des images disponible sur le site, rendez-vous sur <a href="/liste_images" target="_blank">Liste images</a>. <br>
+                                                    Pour en ajouter, rendez-vous sur <a href="/ajout_image" target="_blank">Ajout image</a>.
                                                 </p>
                                                 <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="<?= $_SESSION['paramsChamp'] ?>" required></textarea>
                                             </div>

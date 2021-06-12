@@ -8,7 +8,7 @@
 
     <section id="createEnonce">
         <div class="container">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-lg-8 mx-auto">
                     <form action="#createEnonce" method="POST">
                         <h4 class="text-center mb-4">Etape 1. Enoncé</h4>
@@ -39,15 +39,13 @@
                     </form>
                 </div>
             </div>
+            <div class="row float-right">
+                <div class="col-12">
+                    <a href="/creer_champ" class="btn btn-primary">Suivant -> Créer un champ</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <div class="row float-right">
-            <div class="col-12">
-                <a href="/creer_champ" class="btn btn-primary">Suivant -> Créer un champ</a>
-            </div>
-        </div>
-    </div>
 
 <?php partial("footer"); ?>

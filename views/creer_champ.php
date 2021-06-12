@@ -8,7 +8,7 @@
 
     <section id="createChamp">
         <div class="container">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-lg-8 mx-auto">
                     <form action="#createChamp" method="POST">
                         <h4 class="text-center mb-4">Etape 2. Champs</h4>
@@ -44,8 +44,8 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <p>
-                                            Pour voir la liste des images disponible sur le site, rendez-vous sur <a href="/liste_images">Liste images</a>. <br>
-                                            Pour en ajouter, rendez-vous sur <a href="/ajout_image">Ajout image</a>.
+                                            Pour voir la liste des images disponible sur le site, rendez-vous sur <a href="/liste_images" target="_blank">Liste images</a>. <br>
+                                            Pour en ajouter, rendez-vous sur <a href="/ajout_image" target="_blank">Ajout image</a>.
                                         </p>
                                         <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="" required></textarea>
                                     </div>
@@ -78,15 +78,12 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="row float-right">
-            <div class="col-12">
-                <a href="/liste_enonces" class="btn btn-primary">Suivant -> Générer un énoncé</a>
+            <div class="row float-right">
+                <div class="col-12">
+                    <a href="/liste_enonces" class="btn btn-primary">Suivant -> Générer un énoncé</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
 <?php partial("footer"); ?>

@@ -2,7 +2,7 @@
 
 <header class="bg-primary text-white">
     <div class="container text-center">
-        <h1>Bienvenue dans votre gestionnaire d'énoncés</h1>
+        <h1>Bienvenue dans votre générateur d'énoncés</h1>
         <p class="lead">Page d'accueil</p>
     </div>
 </header>
