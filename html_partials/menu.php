@@ -1,7 +1,9 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="/<?= getBaseDirectory() ?>/">GRODENT Alexandre 21O5</a>
+        <a class="navbar-brand" href="/">
+            <img class="img-logo" src="./assets/img/logo.png" alt="Logo RandGen">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,8 +17,8 @@
                         Création
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownCreation">
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/creer_enonce">Créer énoncé</a>
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/creer_champ">Créer champ</a>
+                        <a class="dropdown-item" href="/creer_enonce">Créer énoncé</a>
+                        <a class="dropdown-item" href="/creer_champ">Créer champ</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -24,15 +26,15 @@
                         Listes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownLists">
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_enonces">Liste énoncés</a>
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_champs">Liste champs</a>
+                        <a class="dropdown-item" href="/liste_enonces">Liste énoncés</a>
+                        <a class="dropdown-item" href="/liste_champs">Liste champs</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_enonces_generes">Liste énoncés générés</a>
-                        <a class="dropdown-item" href="/<?= getBaseDirectory() ?>/liste_images">Liste images hébergés</a>
+                        <a class="dropdown-item" href="/liste_enonces_generes">Liste énoncés générés</a>
+                        <a class="dropdown-item" href="/liste_images">Liste images hébergés</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/<?= getBaseDirectory() ?>/ajout_image">Ajout image</a>
+                    <a class="nav-link" href="/ajout_image">Ajout image</a>
                 </li>
             </ul>
         </div>

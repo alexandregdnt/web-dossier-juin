@@ -14,7 +14,7 @@
                     The form also needs the following attribute: enctype="multipart/form-data". It specifies which content-type to use when submitting the form
                     Without the requirements above, the file upload will not work.
                     -->
-                    <form action="/<?= getBaseDirectory() ?>/ajout_image" method="POST" enctype="multipart/form-data">
+                    <form action="/ajout_image" method="POST" enctype="multipart/form-data">
                         <h4 class="text-center mb-4">Ajouter une image à la bibliothèque</h4>
                         <?php
                         if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {

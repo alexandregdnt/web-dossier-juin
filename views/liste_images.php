@@ -19,10 +19,10 @@
                         printWarning($_POST['warning']);
                     }
                     ?>
-                    <p>Pour ajouter des images, rendez-vous sur <a href="/<?= getBaseDirectory() ?>/ajout_image">Ajout image</a>.</p>
+                    <p>Pour ajouter des images, rendez-vous sur <a href="/ajout_image">Ajout image</a>.</p>
 
                     <?php if (isset($_GET['name']) && !empty($_GET['name']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_GET['action']) && !empty($_GET['action'])) && $_GET['action'] === "rename") { ?>
-                        <form action="/<?= getBaseDirectory() ?>/liste_images" method="POST">
+                        <form action="/liste_images" method="POST">
                             <h3 class="text-center mb-4">Renommer une image</h3>
                             <div class="container mb-5">
                                 <div class="row mb-3">
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="row">
                                     <input class="col-4 mx-auto btn btn-primary" type="submit" name="enonceEditSubmit" value="Sauvegarder">
-                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_images">Annuler</a>
+                                    <a class="col-4 mx-auto btn btn-danger" href="/liste_images">Annuler</a>
                                 </div>
                             </div>
                         </form>
@@ -65,10 +65,10 @@
                                     ?>
                                     <div class="col-12 mb-3 p-3 enonce">
                                         <h4><?= htmlspecialchars($value) ?></h4>
-                                        <img class="img-enonce" src="/<?= getBaseDirectory() ?>/assets/uploads/img/<?= urlencode($value) ?>" alt="<?= $value ?>">
+                                        <img class="img-enonce" src="/assets/uploads/img/<?= urlencode($value) ?>" alt="<?= $value ?>">
                                         <div class="mt-3">
-                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_images/<?= urlencode($value) ?>/delete">Supprimer</a>
-                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_images/<?= urlencode($value) ?>/rename">Renommer</a>
+                                            <a class="btn btn-danger" href="/liste_images/<?= urlencode($value) ?>/delete">Supprimer</a>
+                                            <a class="btn btn-warning" href="/liste_images/<?= urlencode($value) ?>/rename">Renommer</a>
                                         </div>
                                     </div>
                                     <?php

@@ -23,9 +23,9 @@
                     <?php
                     if ((!isset($_POST['error']) || empty($_POST['error'])) && (isset($_GET['action']) && !empty($_GET['action'])) && $_GET['action'] == 'edit') {
                         if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
-                            echo '<form action="/'. getBaseDirectory() .'/liste_champs" method="POST">';
+                            echo '<form action="/liste_champs" method="POST">';
                         } else {
-                            echo '<form action="/'. getBaseDirectory() .'/liste_champs/'. $_POST['nomChamp'] .'/edit" method="POST">';
+                            echo '<form action="/liste_champs/'. $_POST['nomChamp'] .'/edit" method="POST">';
                         }
                         ?>
                             <h3 class="text-center mb-4">Modification champ</h3>
@@ -49,7 +49,7 @@
                                     <?php } elseif ($_SESSION['typeChamp'] === "image") { ?>
                                         <div class="row mb-3">
                                             <div class="col-12">
-                                                <p>Pour gérer (ajouter, supprimer) des images sur l'hébergement, rendez-vous sur <a href="/ <?= getBaseDirectory() ?>/liste_images">Liste images</a>.</p>
+                                                <p>Pour gérer (ajouter, supprimer) des images sur l'hébergement, rendez-vous sur <a href="/liste_images">Liste images</a>.</p>
                                                 <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="<?= $_SESSION['paramsChamp'] ?>" required></textarea>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                 <?php } ?>
                                 <div class="row">
                                     <input class="col-4 mx-auto btn btn-primary" type="submit" name="submitChamp" value="Sauvegarder">
-                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_champs">Annuler</a>
+                                    <a class="col-4 mx-auto btn btn-danger" href="/liste_champs">Annuler</a>
                                 </div>
                             </div>
                         </form>
@@ -118,8 +118,8 @@
 
                                             <?= $paramsChamp ?>
 
-                                            <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nom"] ?>/delete">Supprimer</a>
-                                            <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_champs/<?= $row["nom"] ?>/edit">Modifier</a>
+                                            <a class="btn btn-danger" href="/liste_champs/<?= $row["nom"] ?>/delete">Supprimer</a>
+                                            <a class="btn btn-warning" href="/liste_champs/<?= $row["nom"] ?>/edit">Modifier</a>
                                         </div>
                                         <?php
                                     }

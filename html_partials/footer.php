@@ -7,10 +7,10 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="/<?= getBaseDirectory() ?>/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/<?= getBaseDirectory() ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="/<?= getBaseDirectory() ?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
 </html>

@@ -23,26 +23,18 @@
                     <div class="row mb-5">
                         <div class="col-4 text-center">
                             <p><b>Etape 1</b></p>
-                            <a href="/<?= getBaseDirectory() ?>/creer_enonce" class="btn btn-primary">Créer un énoncé</a>
+                            <a href="/creer_enonce" class="btn btn-primary">Créer un énoncé</a>
                         </div>
                         <div class="col-4 text-center">
                             <p><b>Etape 2</b></p>
-                            <a href="/<?= getBaseDirectory() ?>/creer_champ" class="btn btn-primary">Créer un champ</a>
+                            <a href="/creer_champ" class="btn btn-primary">Créer un champ</a>
                         </div>
                         <div class="col-4 text-center">
                             <p><b>Etape 3</b></p>
-                            <a href="/<?= getBaseDirectory() ?>/liste_enonces" class="btn btn-primary">Générer un énoncé</a>
+                            <a href="/liste_enonces" class="btn btn-primary">Générer un énoncé</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-8 mx-auto">
-                <h2>Tutoriel</h2>
-
-                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/AYjZSmkc7vM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>

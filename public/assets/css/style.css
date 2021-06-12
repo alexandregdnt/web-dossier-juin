@@ -1,5 +1,5 @@
 header {
-    padding: 121px 0 65px;
+    padding: 175px 0 65px;
 }
 
 section {
@@ -18,4 +18,8 @@ img.img-enonce {
     display: block;
     border: 1px solid #737373;
     border-radius: 8px;
+}
+
+img.img-logo {
+    height: 75px;
 }

@@ -27,15 +27,15 @@
                                 <p>Identifiant de l'énoncé généré: <span class="font-weight-bold"><?= $_POST['generatedFileId'] ?></span></p>
                             </div>
                             <div class="row">
-                                <a class="col-4 mx-auto btn btn-success" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
-                                <a class="col-4 mx-auto btn btn-secondary" href="/<?= getBaseDirectory() ?>/generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
+                                <a class="col-4 mx-auto btn btn-success" href="/generated/<?= $_POST['generatedFileId'] ?>.html" download="Enoncé généré.html">Télécharger ici</a>
+                                <a class="col-4 mx-auto btn btn-secondary" href="/generated/<?= $_POST['generatedFileId'] ?>.html" target="_blank">Visualiser ici</a>
                             </div>
                         </div>
                         <hr>
                     <?php } ?>
 
                     <?php if (isset($_GET['id']) && !empty($_GET['id']) && (!isset($_POST['error']) || empty($_POST['error'])) && (isset($_POST['enonceEditContent']) && !empty($_POST['enonceEditContent'])) && (isset($_POST['enonceEditId']) && !empty($_POST['enonceEditId']))) { ?>
-                        <form action="/<?= getBaseDirectory() ?>/liste_enonces" method="POST">
+                        <form action="/liste_enonces" method="POST">
                             <h3 class="text-center mb-4">Modification énoncé</h3>
                             <div class="container mb-5">
                                 <div class="row mx-auto mb-1">
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="row">
                                     <input class="col-4 mx-auto btn btn-primary" type="submit" name="enonceEditSubmit" value="Sauvegarder">
-                                    <a class="col-4 mx-auto btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces">Annuler</a>
+                                    <a class="col-4 mx-auto btn btn-danger" href="/liste_enonces">Annuler</a>
                                 </div>
                             </div>
                         </form>
@@ -69,9 +69,9 @@
                                         <div class="col-12 mb-3 p-3 enonce">
                                             <?= $row["contenu"] ?>
                                             <div class="mt-">
-                                                <a class="btn btn-primary" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
-                                                <a class="btn btn-danger" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
-                                                <a class="btn btn-warning" href="/<?= getBaseDirectory() ?>/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>
+                                                <a class="btn btn-primary" href="/liste_enonces/<?= $row["idEnonce"] ?>/generate">Générer</a>
+                                                <a class="btn btn-danger" href="/liste_enonces/<?= $row["idEnonce"] ?>/delete">Supprimer</a>
+                                                <a class="btn btn-warning" href="/liste_enonces/<?= $row["idEnonce"] ?>/edit">Modifier</a>
                                             </div>
                                         </div>
                                         <?php

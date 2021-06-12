@@ -39,15 +39,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                                         $selectedOptionId = rand(0, $availableOptions - 1);
                                         $selectedOption = $options[$selectedOptionId];
 
-                                        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-                                            $url = "https://";
-                                        } else {
-                                            $url = "http://";
-                                        }
-                                        // Append the host(domain name, ip) to the URL.
-                                        $url .= $_SERVER['HTTP_HOST'];
-                                        $url .= "/" . getBaseDirectory();
-                                        $url .= "/assets/uploads/img/";
+                                        $url = "/assets/uploads/img/";
                                         $url .= $selectedOption;
 
                                         if (imgUrlExist($url)) {
@@ -106,7 +98,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                 }
 
                 if (!isset($_POST['error']) || empty($_POST['error'])) {
-                    file_put_contents("generated/$generatedFileId.html", $htmlCode);
+                    file_put_contents("../public/generated/$generatedFileId.html", $htmlCode);
                     // redirect("generated/$generatedFileId.html");
                 }
 

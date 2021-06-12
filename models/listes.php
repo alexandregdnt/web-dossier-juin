@@ -93,7 +93,7 @@ function randFloat ($min, $max, $step) {
 
 // Génération énoné
 function getGeneratedFileId () {
-    $directory = "./generated";
+    $directory = "../public/generated";
     // Récupère le nom de tous les fichiers du dossier mentionné (Dans un système unix (linux/macos), .. et . apparaissent et ne correspondent à aucun fichier)
     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 
