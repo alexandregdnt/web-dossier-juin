@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="py-3 bg-dark fixed-bottom">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; <?= date("Y"); ?> <a href="https://alexgr.be" target="_blank">Alexandre Grodent</a></p>
+        <p class="m-0 text-center text-white">Copyright &copy; <?= date("Y"); ?> <a href="https://alexgr.be" target="_blank">Alexandre Grodent</a> - Tous droits réservés</p>
     </div>
     <!-- /.container -->
 </footer>

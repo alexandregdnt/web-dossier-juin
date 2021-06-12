@@ -31,3 +31,8 @@ img {
     border: 1px solid #737373;
     border-radius: 8px;
 }
+
+footer>p {
+    margin-top: 5px;
+    text-align: center;
+}

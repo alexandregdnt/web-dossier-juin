@@ -74,6 +74,20 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                     $content = "";
                 }
 
+                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+                    $url = "https://";
+                } else {
+                    $url = "http://";
+                }
+                // Append the host(domain name, ip) to the URL.
+                $url .= $_SERVER['HTTP_HOST'];
+
+                $generatedFileId = getGeneratedFileId();
+                $_POST['generatedFileId'] = $generatedFileId;
+                if ($generatedFileId == -1) {
+                    $_POST['error'] = "Le nombre d'intevalle d'id possible est trop petit !";
+                }
+
                 $style = file_get_contents("../public/assets/css/generated.css");
                 $htmlCode = '
 <!DOCTYPE html>
@@ -83,7 +97,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Enoncé généré par Alexandre GRODENT</title>
+    <title>Enoncé généré par RandGen</title>
     
     <!-- Stylesheets -->
     <style>' . $style . '</style>
@@ -91,20 +105,17 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
 <body>
 <div class="description">
     <h1>Enoncé généré</h1>
-    <p>Bonjour et bienvenue sur un énoncé généré par le site web d\'<a href="https://alexgr.be" target="_blank">Alexandre Grodent</a>.</p>
+    <p>Bonjour et bienvenue sur un énoncé généré par le site web <a href="' . $url . '" target="_blank">RandGen</a>.</p>
 </div>
 
 <div class="enonce">' . $content . '
 </div>
 </body>
+<footer>
+<p>Identifiant de l\'énoncé: ' . $generatedFileId . '</p>
+</footer>
 </html>
     ';
-
-                $generatedFileId = getGeneratedFileId();
-                $_POST['generatedFileId'] = $generatedFileId;
-                if ($generatedFileId == -1) {
-                    $_POST['error'] = "Le nombre d'intevalle d'id possible est trop petit !";
-                }
 
                 if (!isset($_POST['error']) || empty($_POST['error'])) {
                     file_put_contents("../public/generated/$generatedFileId.html", $htmlCode);

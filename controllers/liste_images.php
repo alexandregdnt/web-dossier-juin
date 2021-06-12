@@ -43,21 +43,27 @@ if (isset($_POST['oldName']) && !empty($_POST['oldName']) && isset($_POST['newNa
 
     $fileExtension = "." . $_POST['fileExtension'];
     $oldName = $_POST['oldName'];
-    $newName = str_replace(" ", "_", $_POST['newName']);
-    $newName = str_replace(".", "_", $newName);
+    $newName = $_POST['newName'];
 
-    if (file_exists($directory . $oldName . $fileExtension)) {
-        if (!file_exists($directory . $newName . $fileExtension)) {
-            if (rename($directory . $oldName . $fileExtension, $directory . $newName . $fileExtension)) {
-                $_POST['success'] = "Le fichier a bien été renommé !";
+    preg_match_all("/\W/", $_POST['newName'], $matches);
+    $matches = $matches[0];
+
+    if (count($matches) <= 0) {
+        if (file_exists($directory . $oldName . $fileExtension)) {
+            if (!file_exists($directory . $newName . $fileExtension)) {
+                if (rename($directory . $oldName . $fileExtension, $directory . $newName . $fileExtension)) {
+                    $_POST['success'] = "Le fichier a bien été renommé !";
+                } else {
+                    $_POST['error'] = "Erreur lors du renommage de fichier !";
+                }
             } else {
-                $_POST['error'] = "Erreur lors du renommage de fichier !";
+                $_POST['error'] = "Un fichier avec ce nom existe déjà !";
             }
         } else {
-            $_POST['error'] = "Un fichier avec ce nom existe déjà !";
+            $_POST['error'] = "Ce fichier n'existe pas !";
         }
     } else {
-        $_POST['error'] = "Ce fichier n'existe pas !";
+        $_POST['error'] = "Le nom du fichier mentionné ne peut comprendre que des lettre, des chiffres et _ !";
     }
 }
 
