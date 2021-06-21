@@ -1,19 +1,8 @@
-# Consignes pour le dossier de fin d'année Web
+# GRODENT Alexandre 2105 - Dossier final Programmation Web dynamique
 
-### Objectif :
-Créer un outil web de génération aléatoire d'énoncés.
+### Attention lors de la correction de mon dossier !!
+Le projet fonctionne correctement uniquement si le nom de domaine pointe vers le sous-dossier `public`.
 
-### Consignes de remise :
+Afin de faciliter l'utilisation du site, je vous ai fourni dans l'archive le fichier `backup-bdd.sql` qui est une sauvegarde de quelques exemples d'énoncés et de champs.
 
-Dossier (une archive contenant l’ensemble de votre projet) à envoyer selon les modalités suivantes :
-
-- **Comment ?** Via cette espace.
-- **Pour quand ?** Le samedi 12 juin 2021 à 20h00 au plus tard.
-- **Quoi ?** L’archive porte le nom GroupeNOMPrenom_Web20202021.zip
-- **Exemple :** 2100SAGOTPierre_Web20202021.zip
-
-### Évaluation :
-
-Votre travail sera évalué **oralement** lors de la session d’examen de juin. (Veuillez-vous munir de l’énoncé et d’une page de garde pour l’évaluation.)
-
-_Penser à appliquer les règles d’ergonomie tout au long du projet : organisation et cohérence, conventions, information et compréhension, assistance et gestion des erreurs (messages d’erreur, couleurs, …), etc._ 
+Attention à bien modifier le fichier `config.json` pour la configuration de la base de données.

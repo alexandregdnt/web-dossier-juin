@@ -1,5 +1,6 @@
 <?php
 
+// Enonces
 function getEnonces () {
     $db = dbConnect();
     return mysqli_query($db, "SELECT * FROM enonce;");
@@ -13,6 +14,27 @@ function getEnonceById ($id) {
         ");
 }
 
+function deleteEnonceById ($id) {
+    $db = dbConnect();
+    return mysqli_query($db, "DELETE FROM `enonce` WHERE `enonce`.`idEnonce` = $id");
+}
+
+function updateEnonceById ($id, $content) {
+    $db = dbConnect();
+    return mysqli_query($db, "
+        UPDATE enonce 
+        SET `contenu` = '" . $content . "'
+        WHERE `enonce`.`idEnonce` = $id;
+        ");
+}
+
+
+// Champs
+function getChamps () {
+    $db = dbConnect();
+    return mysqli_query($db, "SELECT * FROM champ");
+}
+
 function getChamp ($name) {
     $db = dbConnect();
     return mysqli_query($db, "
@@ -21,37 +43,30 @@ function getChamp ($name) {
         ");
 }
 
+function deleteChamp ($name) {
+    $db = dbConnect();
+    return mysqli_query($db, "DELETE FROM `champ` WHERE `champ`.`nom` LIKE '". $name. "'");
+}
+
+function updateChamp ($name, $newName, $type, $options) {
+    $db = dbConnect();
+    return mysqli_query($db, "
+        UPDATE champ 
+        SET `nom` = '" . $newName . "',
+        `typechamp` = '". $type ."',
+        `parametres` = '" . $options . "'
+        WHERE `champ`.`nom` LIKE '". $name. "';
+        ");
+}
+
+// Autre
 function randFloat ($min, $max, $step) {
     return (rand() % ((++$max - $min) / $step)) * $step + $min;
 }
 
-function urlExist ($url) {
-    // Récupération des en-têtes
-    $hdrs = @get_headers($url);
-
-    if (is_array($hdrs)) {
-        // Vérification code 200 OK
-        if (preg_match('/^HTTP\/\d+\.\d+\s+2\d\d\s+.*$/', $hdrs[0])) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function imgUrlExist ($url) {
-    $hdrs = @get_headers($url);
-
-    if (urlExist($url)) {
-        // hdrs[8] Correspond au type de contenu (html = "Content-Type: text/html; charset=UTF-8") ou (img en jpg = "Content-Type: image/jpeg")
-        if (preg_match("#image/#", $hdrs[8])) {
-            return true;
-        }
-    }
-    return false;
-}
-
+// Génération énoné
 function getGeneratedFileId () {
-    $directory = "./generated";
+    $directory = "../public/generated";
     // Récupère le nom de tous les fichiers du dossier mentionné (Dans un système unix (linux/macos), .. et . apparaissent et ne correspondent à aucun fichier)
     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 

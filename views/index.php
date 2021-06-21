@@ -2,12 +2,12 @@
 
 <header class="bg-primary text-white">
     <div class="container text-center">
-        <h1>Bienvenue dans votre gestionnaire d'énoncés</h1>
+        <h1>Bienvenue dans votre générateur d'énoncés</h1>
         <p class="lead">Page d'accueil</p>
     </div>
 </header>
 
-<section class="bg-light">
+<section>
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8 mx-auto">
@@ -20,22 +20,30 @@
                 </p>
 
                 <div class="container">
-                    <div class="row">
+                    <div class="row mb-5">
                         <div class="col-4 text-center">
                             <p><b>Etape 1</b></p>
-                            <a href="./creer_enonce" class="btn btn-primary">Créer un énoncé</a>
+                            <a href="/creer_enonce" class="btn btn-primary">Créer un énoncé</a>
                         </div>
                         <div class="col-4 text-center">
                             <p><b>Etape 2</b></p>
-                            <a href="./creer_enonce#createChamp" class="btn btn-primary">Créer un champ</a>
+                            <a href="/creer_champ" class="btn btn-primary">Créer un champ</a>
                         </div>
                         <div class="col-4 text-center">
                             <p><b>Etape 3</b></p>
-                            <a href="./generer_enonce" class="btn btn-primary">Générer un énoncé</a>
+                            <a href="/liste_enonces" class="btn btn-primary">Générer un énoncé</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+
         </div>
     </div>
 </section>
