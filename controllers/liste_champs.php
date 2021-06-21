@@ -66,7 +66,6 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
         $res = getChamp($nomChamp);
         if ($res) {
             if (mysqli_num_rows($res) == 0 || $nomChamp === $nomChampOld) {
-                if ($typeChamp === "number" || $typeChamp === "text" || $typeChamp === "image") {
                     if ($typeChamp === "number") {
                         if (isset($_POST['nombreBorneInferieure']) && !empty($_POST['nombreBorneInferieure']) && isset($_POST['nombreBorneSupperieure']) && !empty($_POST['nombreBorneSupperieure']) && isset($_POST['nombrePas']) && !empty($_POST['nombrePas'])) {
                             $nombreBorneInferieure = $_POST['nombreBorneInferieure'];
@@ -107,18 +106,26 @@ if (isset($_POST['submitChamp']) && !empty($_POST['submitChamp'])) {
                                 unset($paramsChamp);
                             }
                         }
-                    } else {
+                    } elseif ($typeChamp === "text") {
                         if (isset($_POST['paramsChamp']) && !empty($_POST['paramsChamp'])) {
                             $paramsChamp = $_POST['paramsChamp'];
                             $paramsChamp = str_replace("'", "\'", $paramsChamp);
                             $array = explode("; ", $paramsChamp);
                             $paramsChamp = serialize($array);
                         }
+                    } elseif ($typeChamp === "date") {
+                        if (isset($_POST['dateBorneInferieure']) && !empty($_POST['dateBorneInferieure']) && isset($_POST['dateBorneSupperieure']) && !empty($_POST['dateBorneSupperieure'])) {
+                            if (strtotime($_POST['dateBorneInferieure']) < strtotime($_POST['dateBorneSupperieure'])) {
+                                $array = [$_POST['dateBorneInferieure'], $_POST['dateBorneSupperieure']];
+                                $paramsChamp = serialize($array);
+                            } else {
+                                $_POST['error'] = "Borne suppérieur inférieure à la borne inférieure !";
+                            }
+                        }
+                    } else {
+                        $_POST['error'] = "Type de champs invalide !";
+                        session_unset();
                     }
-                } else {
-                    $_POST['error'] = "Type de champs invalide !";
-                    session_unset();
-                }
 
                 if (isset($paramsChamp) && !empty($paramsChamp)) {
                     if (strlen($paramsChamp) <= 1000) {

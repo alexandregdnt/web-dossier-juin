@@ -56,6 +56,17 @@
                                                 <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="<?= $_SESSION['paramsChamp'] ?>" required></textarea>
                                             </div>
                                         </div>
+                                    <?php } elseif ($_SESSION['typeChamp'] === "date") { ?>
+                                        <div class="row mb-3">
+                                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                                <label for="dateBorneInferieure">Borne inférieure</label>
+                                                <input class="form-control" type="date" id="dateBorneInferieure" name="dateBorneInferieure" placeholder="Borne inférieure" value="" required>
+                                            </div>
+                                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                                <label for="dateBorneSupperieure">Borne supérieure</label>
+                                                <input class="form-control" type="date" id="dateBorneSupperieure" name="dateBorneSupperieure" placeholder="Borne supérieure" value="" required>
+                                            </div>
+                                        </div>
                                     <?php } else { ?>
                                         <div class="row mb-3">
                                             <div class="col-12">
@@ -75,6 +86,7 @@
                                                 <option value="number" <?= $_POST['typeChamp'] == "number" ? 'selected' : '' ?>>Nombre</option>
                                                 <option value="text" <?= $_POST['typeChamp'] == "text" ? 'selected' : '' ?>>Texte</option>
                                                 <option value="image" <?= $_POST['typeChamp'] == "image" ? 'selected' : '' ?>>Image</option>
+                                                <option value="date" <?= $_POST['typeChamp'] == "date" ? 'selected' : '' ?>>Date</option>
                                             </select>
                                         </div>
                                     </div>
@@ -109,6 +121,11 @@
                                             $paramsChamp .= "Borne inférieure: ". $options[0] ."<br>";
                                             $paramsChamp .= "Borne supérieure: ". $options[1] ."<br>";
                                             $paramsChamp .= "Pas: ". $options[2];
+                                            $paramsChamp .= "</p>";
+                                        } elseif ($row['typechamp'] == "date") {
+                                            $paramsChamp = "<p>";
+                                            $paramsChamp .= "Borne inférieure: ". date("d/m/Y", strtotime($options[0])) ."<br>";
+                                            $paramsChamp .= "Borne supérieure: ". date("d/m/Y", strtotime($options[1])) ."<br>";
                                             $paramsChamp .= "</p>";
                                         } else {
                                             $paramsChampTmp = implode("</li><li>", $options);

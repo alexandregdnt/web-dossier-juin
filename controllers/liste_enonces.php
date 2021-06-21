@@ -56,6 +56,12 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['action']) && !e
                                         } else {
                                             $selectedOption = "[img]Image indisponible (" . $selectedOption . ")[/img]";
                                         }
+                                    } elseif ($row["typechamp"] === "date") {
+                                        $dateBorneInferieure = strtotime($options[0]);
+                                        $dateBorneSupperieure = strtotime($options[1]);
+                                        $selectedTimestamp = rand($dateBorneInferieure, $dateBorneSupperieure);
+
+                                        $selectedOption = date("d/m/Y", $selectedTimestamp);
                                     } else {
                                         $selectedOption = $value[0];
                                     }

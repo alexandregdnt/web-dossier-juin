@@ -50,6 +50,17 @@
                                         <textarea class="form-control" id="paramsChamp" name="paramsChamp" placeholder="Paramètres du champ (Veuillez les séparer par un point vigule suivi d'un espace '; ')" value="" required></textarea>
                                     </div>
                                 </div>
+                            <?php } elseif ($_SESSION['typeChamp'] === "date") { ?>
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                        <label for="dateBorneInferieure">Borne inférieure</label>
+                                        <input class="form-control" type="date" id="dateBorneInferieure" name="dateBorneInferieure" placeholder="Borne inférieure" value="" required>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                        <label for="dateBorneSupperieure">Borne supérieure</label>
+                                        <input class="form-control" type="date" id="dateBorneSupperieure" name="dateBorneSupperieure" placeholder="Borne supérieure" value="" required>
+                                    </div>
+                                </div>
                             <?php } else { ?>
                                 <div class="row mb-3">
                                     <div class="col-12">
@@ -69,6 +80,7 @@
                                         <option value="number">Nombre</option>
                                         <option value="text">Texte</option>
                                         <option value="image">Image</option>
+                                        <option value="date">Date</option>
                                     </select>
                                 </div>
                             </div>
